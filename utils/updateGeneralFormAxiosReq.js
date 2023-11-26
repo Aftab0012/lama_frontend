@@ -15,7 +15,7 @@ export const updateGeneralFormId = async (projectId, generalFormId) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${localStorage?.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       }
     );

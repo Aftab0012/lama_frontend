@@ -11,10 +11,10 @@ import '../../../styles/customStyles.css';
 const page = () => {
   const [name, setName] = useState('');
   console.log(name);
-  const username = localStorage?.getItem('username');
+  const username = localStorage.getItem('username');
 
   const updateName = async () => {
-    let userId = localStorage?.getItem('id');
+    let userId = localStorage.getItem('id');
     console.log(userId);
     try {
       const data = {

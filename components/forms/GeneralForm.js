@@ -14,8 +14,8 @@ const GeneralForm = (props) => {
   });
   const backendURL = `http://localhost:3002/generalform/add`;
 
-  const projectId = localStorage?.getItem('projectId');
-  const generalFormId = localStorage?.getItem('generalFormId');
+  const projectId = localStorage.getItem('projectId');
+  const generalFormId = localStorage.getItem('generalFormId');
 
   const handleInputChange = (e, field) => {
     setData((prevData) => ({
@@ -36,7 +36,7 @@ const GeneralForm = (props) => {
       if (validateUserGeneralForm(formData)) {
         const response = await axios.post(backendURL, formData, {
           headers: {
-            Authorization: `Bearer ${localStorage?.getItem('token')}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         });
         const dataReceived = response.data;
@@ -64,7 +64,7 @@ const GeneralForm = (props) => {
   };
 
   const persistLogin = (dataReceived) => {
-    localStorage?.setItem('generalFormId', dataReceived._id);
+    localStorage.setItem('generalFormId', dataReceived._id);
   };
 
   return (

@@ -22,7 +22,7 @@ const MediaUploadForm = ({ onClose }) => {
       try {
         const response = await axios.post(backendURL, data, {
           headers: {
-            Authorization: `Bearer ${localStorage?.getItem('token')}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         });
         const dataReceived = response.data;

@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
   const router = useRouter();
-  const isLoggedIn = localStorage?.getItem('username');
+  const isLoggedIn = localStorage.getItem('username');
 
   const handleLogout = () => {
     console.log('logout in progress.....');

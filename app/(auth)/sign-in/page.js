@@ -69,9 +69,9 @@ function Register() {
   };
 
   const persistLogin = (dataReceived) => {
-    localStorage?.setItem('token', dataReceived.token);
-    localStorage?.setItem('username', dataReceived.username);
-    localStorage?.setItem('id', dataReceived._id);
+    localStorage.setItem('token', dataReceived.token);
+    localStorage.setItem('username', dataReceived.username);
+    localStorage.setItem('id', dataReceived._id);
   };
 
   const validateInput = (data) => {

@@ -57,30 +57,28 @@ const DisplayForm = () => {
     };
 
     try {
-      if (typeof window !== 'undefined') {
-        if (validateDisplayFormInput(formData)) {
-          const response = await axios.post(
-            `${backendURL}/display-form/add`,
-            formData,
-            {
-              headers: {
-                Authorization: `Bearer ${localStorage?.getItem('token')}`,
-              },
-            }
-          );
-          console.log(response.data);
-          if (response.status === 201) {
-            toast.success('Form Submitted successfully!', {
-              position: 'top-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'light',
-            });
+      if (validateDisplayFormInput(formData)) {
+        const response = await axios.post(
+          `${backendURL}/display-form/add`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           }
+        );
+        console.log(response.data);
+        if (response.status === 201) {
+          toast.success('Form Submitted successfully!', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
+          });
         }
       }
     } catch (error) {
