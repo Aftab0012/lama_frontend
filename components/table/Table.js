@@ -2,12 +2,13 @@
 'use client';
 
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import TableData from './TableData';
 
 const Table = () => {
   const [data, setData] = useState([]);
   const [token, setToken] = useState('');
+  const [reducerVal, forceUpdate] = useReducer((x) => x + 1, 0);
   const backendURL = `https://lamarefbackend.onrender.com/media-uploads`;
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const Table = () => {
           },
         });
         setData(response.data.mediaUploads);
+        forceUpdate();
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -30,7 +32,7 @@ const Table = () => {
     fetchData(); // Call fetchData inside the useEffect
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty dependency array to run only once
+  }, [reducerVal]); // Empty dependency array to run only once
 
   return (
     <>

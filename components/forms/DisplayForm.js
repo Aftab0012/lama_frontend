@@ -117,7 +117,7 @@ const DisplayForm = () => {
             value={primaryColor}
             onChange={handleColorChange1}
             placeholder="Enter hex color code 1"
-            className="h-12 px-4 border border-none rounded focus:outline-none focus:border-purple-500 dark:bg-gray-800"
+            className="h-12 px-4 border border-none rounded text-dark400_light800 focus:outline-none focus:border-purple-500 dark:bg-gray-800"
           />
         </div>
 
@@ -145,7 +145,7 @@ const DisplayForm = () => {
             value={fontColor}
             onChange={handleColorChange2}
             placeholder="Enter hex color code 2"
-            className="h-12 px-4 border-none rounded focus:outline-none focus:border-purple-500 dark:bg-gray-800"
+            className="h-12 px-4 border-none rounded text-dark400_light800 focus:outline-none focus:border-purple-500 dark:bg-gray-800"
           />
         </div>
 
@@ -174,7 +174,7 @@ const DisplayForm = () => {
               value={fontSize}
               onChange={handleTextChange1}
               placeholder="Enter text value 1"
-              className="px-4 py-3 border-none rounded focus:outline-none focus:border-purple-500 dark:bg-gray-800"
+              className="px-4 py-3 border-none rounded text-dark400_light800 focus:outline-none focus:border-purple-500 dark:bg-gray-800"
             />
           </div>
 
@@ -191,7 +191,7 @@ const DisplayForm = () => {
               value={chatSize}
               onChange={handleTextChange2}
               placeholder="Enter text value 2"
-              className="px-4 py-3 border-none rounded focus:outline-none focus:border-purple-500 dark:bg-gray-800"
+              className="px-4 py-3 border-none rounded text-dark400_light800 focus:outline-none focus:border-purple-500 dark:bg-gray-800"
             />
           </div>
 
@@ -249,7 +249,7 @@ const DisplayForm = () => {
             value={bottonDistance}
             onChange={(e) => setBottomDistance(e.target.value)}
             placeholder="Enter numeric value 1"
-            className="p-2 border-none rounded focus:outline-none focus:border-purple-500 dark:bg-gray-800"
+            className="p-2 border-none rounded focus:outline-none text-dark400_light800 focus:border-purple-500 dark:bg-gray-800"
           />
         </div>
         <p>{bottonDistance}</p>
@@ -265,7 +265,7 @@ const DisplayForm = () => {
             value={horizontalDistance}
             onChange={(e) => setHorizontalDistance(e.target.value)}
             placeholder="Enter numeric value 2"
-            className="p-2 border-none rounded focus:outline-none focus:border-purple-500 dark:bg-gray-800"
+            className="p-2 border-none rounded focus:outline-none text-dark400_light800 focus:border-purple-500 dark:bg-gray-800"
           />
         </div>
         <p>{horizontalDistance}</p>
