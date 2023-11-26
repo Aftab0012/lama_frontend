@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const CardFeed = () => {
   const [data, setData] = useState([]);
-  const backendURL = `http://localhost:3002/projects`;
+  const backendURL = `https://lamarefbackend.onrender.com/projects`;
 
   function getRandomImage() {
     const imagePool = ['/assets/images/blue.png', '/assets/images/orange.png'];

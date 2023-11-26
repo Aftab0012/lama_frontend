@@ -11,7 +11,7 @@ const ProjectCreationForm = () => {
   const [name, setName] = useState('');
   const [token, setToken] = useState('');
   const router = useRouter();
-  const backendURL = `http://localhost:3002/projects/add`;
+  const backendURL = `https://lamarefbackend.onrender.com/projects/add`;
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');

@@ -10,7 +10,7 @@ const MediaUploadForm = ({ onClose }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [token, setToken] = useState('');
-  const backendURL = `http://localhost:3002/media-uploads/add`;
+  const backendURL = `https://lamarefbackend.onrender.com/media-uploads/add`;
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');

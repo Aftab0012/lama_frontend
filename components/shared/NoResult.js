@@ -4,14 +4,14 @@ import React from 'react';
 const NoResult = ({ title, description }) => {
   return (
     <div className="flex flex-col items-center justify-center w-full mt-10">
-      <Image
+      <img
         src="/assets/images/light-Illustration.png"
         alt="No result found"
         width={270}
         height={200}
         className="block object-contain dark:hidden"
       />
-      <Image
+      <img
         src="/assets/images/dark-Illustration.png"
         alt="No result found"
         width={270}

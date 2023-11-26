@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 export const fetchData = async (storedToken) => {
-  const backendURL = `http://localhost:3002/media-uploads`;
+  const backendURL = `https://lamarefbackend.onrender.com/media-uploads`;
   try {
     const response = await axios.get(backendURL, {
       headers: {

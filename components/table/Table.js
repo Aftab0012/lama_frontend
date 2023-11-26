@@ -8,7 +8,7 @@ import TableData from './TableData';
 const Table = () => {
   const [data, setData] = useState([]);
   const [token, setToken] = useState('');
-  const backendURL = `http://localhost:3002/media-uploads`;
+  const backendURL = `https://lamarefbackend.onrender.com/media-uploads`;
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');

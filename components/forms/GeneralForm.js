@@ -12,7 +12,7 @@ const GeneralForm = (props) => {
     message: '',
     placeholderVal: '',
   });
-  const backendURL = `http://localhost:3002/generalform/add`;
+  const backendURL = `https://lamarefbackend.onrender.com/generalform/add`;
 
   const [projectId, setProjectId] = useState('');
   const [generalFormId, setGeneralFormId] = useState('');

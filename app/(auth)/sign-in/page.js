@@ -10,7 +10,7 @@ function Register() {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-  const backendURL = `http://localhost:3002/auth/login`;
+  const backendURL = `https://lamarefbackend.onrender.com/auth/login`;
 
   // =======
 

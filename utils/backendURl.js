@@ -1,1 +1,1 @@
-export const backendURL = `http://localhost:3002`;
+export const backendURL = `https://lamarefbackend.onrender.com`;
