@@ -163,7 +163,7 @@ const DisplayForm = () => {
         )}
       </div>
 
-      <div className="flex space-x-4">
+      <div className="flex flex-col space-x-4">
         <div className="flex flex-col">
           <div className="flex flex-col">
             <label className="pb-2 text-dark300_light900">
@@ -181,8 +181,8 @@ const DisplayForm = () => {
           <p>{fontSize}</p>
         </div>
 
-        <div className="flex flex-col">
-          <div className="flex flex-col">
+        <div className="flex pt-2 flex-col">
+          <div className="flex relative left-[-15px] flex-col">
             <label className="pb-2 text-dark300_light900">
               Enter chat height(px).
             </label>
