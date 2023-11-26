@@ -56,7 +56,7 @@ const NavContent = () => {
 };
 
 const MobileNav = () => {
-  const isLoggedIn = localStorage.getItem('username');
+  const isLoggedIn = localStorage?.getItem('username');
   const router = useRouter();
 
   const handleLogout = () => {

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-// import '../sign-up/Register.css';
 import axios from 'axios';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
@@ -70,9 +69,9 @@ function Register() {
   };
 
   const persistLogin = (dataReceived) => {
-    localStorage.setItem('token', dataReceived.token);
-    localStorage.setItem('username', dataReceived.username);
-    localStorage.setItem('id', dataReceived._id);
+    localStorage?.setItem('token', dataReceived.token);
+    localStorage?.setItem('username', dataReceived.username);
+    localStorage?.setItem('id', dataReceived._id);
   };
 
   const validateInput = (data) => {

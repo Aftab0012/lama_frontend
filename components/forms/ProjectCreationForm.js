@@ -21,7 +21,7 @@ const ProjectCreationForm = () => {
       try {
         const response = await axios.post(backendURL, data, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${localStorage?.getItem('token')}`,
           },
         });
         const dataReceived = response.data;
@@ -60,7 +60,7 @@ const ProjectCreationForm = () => {
   };
 
   const persistLogin = (dataReceived) => {
-    localStorage.setItem('projectId', dataReceived._id);
+    localStorage?.setItem('projectId', dataReceived._id);
   };
   return (
     <div className="fixed w-full max-w-sm p-6 transform -translate-x-1/2 -translate-y-1/2 bg-white h-[300px] rounded-md shadow-md top-1/2 left-1/2 dark:bg-gray-800">

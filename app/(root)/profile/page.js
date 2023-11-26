@@ -11,10 +11,10 @@ import '../../../styles/customStyles.css';
 const page = () => {
   const [name, setName] = useState('');
   console.log(name);
-  const username = localStorage.getItem('username');
+  const username = localStorage?.getItem('username');
 
   const updateName = async () => {
-    let userId = localStorage.getItem('id');
+    let userId = localStorage?.getItem('id');
     console.log(userId);
     try {
       const data = {
@@ -74,7 +74,7 @@ const page = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <div className="flex items-center">
         <Image
           src={'/assets/images/nouser.png'}
@@ -121,8 +121,8 @@ const page = () => {
       </div>
 
       <div className="h1-bold text-[#7e22ce] pt-12">Subscriptions</div>
-      <div className="w-[700px] rounded-xl mt-4 text-white max-md:hidden gap-28 flex-center bg-blue h-14 bg-gradient-to-r from-blue-800 to-indigo-900">
-        <p className="flex items-center gap-2 pr-2">
+      <div className="w-full mt-4 text-white rounded-xl max-md:hidden gap-28 flex-center bg-blue h-14 bg-gradient-to-r from-blue-800 to-indigo-900">
+        <p className="flex items-center gap-2 pr-2 max-lg:line-clamp-1">
           You are currently on the
           <p className="underline h3-bold"> Ques AI Basic Plan!</p>
         </p>

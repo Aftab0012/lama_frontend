@@ -21,7 +21,7 @@ const CardFeed = () => {
       try {
         const response = await axios.get(backendURL, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${localStorage?.getItem('token')}`,
           },
         });
         setData(response.data);

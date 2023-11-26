@@ -3,8 +3,6 @@
 import DisplayForm from '@/components/forms/DisplayForm';
 import GeneralForm from '@/components/forms/GeneralForm';
 import React, { useState } from 'react';
-// import GeneralForm from './GeneralForm'; // Import your GeneralForm component
-// import DisplayForm from './DisplayForm'; // Import your DisplayForm component
 
 function Page() {
   const [selectedHeader, setSelectedHeader] = useState('General');

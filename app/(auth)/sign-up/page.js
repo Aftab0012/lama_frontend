@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-// import './Register.css';
 import axios from 'axios';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
