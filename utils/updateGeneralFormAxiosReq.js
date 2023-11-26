@@ -7,21 +7,23 @@ export const updateGeneralFormId = async (projectId, generalFormId) => {
   const updateUrl = `${backendURL}/projects/update`;
 
   try {
-    const response = await axios.patch(
-      updateUrl,
-      {
-        projectId,
-        generalFormId,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+    if (typeof window !== 'undefined') {
+      const response = await axios.patch(
+        updateUrl,
+        {
+          projectId,
+          generalFormId,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
 
-    if (response.status === 201) {
-      console.log('GeneralFormId updated successfully');
+      if (response.status === 201) {
+        console.log('GeneralFormId updated successfully');
+      }
     }
   } catch (error) {
     console.error('Failed to update GeneralFormId:', error);

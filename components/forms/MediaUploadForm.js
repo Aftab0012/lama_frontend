@@ -20,26 +20,28 @@ const MediaUploadForm = ({ onClose }) => {
     };
     if (validateForm(data)) {
       try {
-        const response = await axios.post(backendURL, data, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
-        const dataReceived = response.data;
-        console.log(dataReceived);
-        console.log(response.status);
-        if (response.status === 201) {
-          toast.success('Media Uploaded successful!', {
-            position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
+        if (typeof window !== 'undefined') {
+          const response = await axios.post(backendURL, data, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           });
-          onClose();
+          const dataReceived = response.data;
+          console.log(dataReceived);
+          console.log(response.status);
+          if (response.status === 201) {
+            toast.success('Media Uploaded successful!', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'light',
+            });
+            onClose();
+          }
         }
       } catch (error) {
         console.log(error);

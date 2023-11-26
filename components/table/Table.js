@@ -10,12 +10,14 @@ const Table = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(backendURL, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-      setData(response.data.mediaUploads);
+      if (typeof window !== 'undefined') {
+        const response = await axios.get(backendURL, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        setData(response.data.mediaUploads);
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
     }

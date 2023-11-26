@@ -19,27 +19,29 @@ const ProjectCreationForm = () => {
     };
     if (validateForm(data)) {
       try {
-        const response = await axios.post(backendURL, data, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
-        const dataReceived = response.data;
-        console.log(dataReceived);
-        persistLogin(dataReceived);
-        console.log(response.status);
-        if (response.status === 201) {
-          toast.success('Media Uploaded successful!', {
-            position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
+        if (typeof window !== 'undefined') {
+          const response = await axios.post(backendURL, data, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           });
-          router.push('/');
+          const dataReceived = response.data;
+          console.log(dataReceived);
+          persistLogin(dataReceived);
+          console.log(response.status);
+          if (response.status === 201) {
+            toast.success('Media Uploaded successful!', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'light',
+            });
+            router.push('/');
+          }
         }
       } catch (error) {
         console.log(error);
@@ -60,7 +62,9 @@ const ProjectCreationForm = () => {
   };
 
   const persistLogin = (dataReceived) => {
-    localStorage.setItem('projectId', dataReceived._id);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('projectId', dataReceived._id);
+    }
   };
   return (
     <div className="fixed w-full max-w-sm p-6 transform -translate-x-1/2 -translate-y-1/2 bg-white h-[300px] rounded-md shadow-md top-1/2 left-1/2 dark:bg-gray-800">

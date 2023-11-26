@@ -1,5 +1,7 @@
 export const logout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('username');
-  console.log('loggedout');
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    console.log('loggedout');
+  }
 };

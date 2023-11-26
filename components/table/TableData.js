@@ -11,12 +11,14 @@ const TableData = ({ data, backendURL, fetchData }) => {
   };
 
   const handleDelete = async (_id) => {
-    const response = await axios.delete(`${backendURL}/delete/${_id}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    });
-    fetchData();
+    if (typeof window !== 'undefined') {
+      const response = await axios.delete(`${backendURL}/delete/${_id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      fetchData();
+    }
   };
 
   return (
