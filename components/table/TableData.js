@@ -1,11 +1,10 @@
 'use client';
 
 import axios from 'axios';
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const TableData = ({ data, backendURL }) => {
   const [userToken, setUserToken] = useState('');
-  const [reducerVal, forceUpdate] = useReducer((x) => x + 1, 0);
   console.log('user state token :' + userToken);
 
   console.log('Component rendered!');
@@ -28,7 +27,7 @@ const TableData = ({ data, backendURL }) => {
         Authorization: `Bearer ${userToken}`,
       },
     });
-    forceUpdate();
+    // fetchData();
   };
 
   return (
