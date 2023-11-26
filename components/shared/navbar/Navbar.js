@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Theme from './Theme';
 import MobileNav from './MobileNav';
 import Image from 'next/image';
@@ -11,8 +11,13 @@ import { logout } from '@/utils/logout';
 import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState('');
   const router = useRouter();
-  const isLoggedIn = localStorage.getItem('username');
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    setIsLoggedIn(storedUsername);
+  }, []);
 
   const handleLogout = () => {
     console.log('logout in progress.....');

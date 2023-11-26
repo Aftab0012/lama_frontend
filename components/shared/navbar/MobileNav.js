@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Sheet,
   SheetClose,
@@ -56,7 +56,15 @@ const NavContent = () => {
 };
 
 const MobileNav = () => {
-  const isLoggedIn = localStorage.getItem('username');
+  const [isLoggedIn, setIsLoggedIn] = useState('');
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    setIsLoggedIn(storedUsername);
+    setUsername(storedUsername);
+  }, []);
+
   const router = useRouter();
 
   const handleLogout = () => {

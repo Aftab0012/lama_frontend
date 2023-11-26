@@ -1,3 +1,4 @@
+// Table.jsx
 'use client';
 
 import axios from 'axios';
@@ -6,30 +7,34 @@ import TableData from './TableData';
 
 const Table = () => {
   const [data, setData] = useState([]);
+  const [token, setToken] = useState('');
   const backendURL = `http://localhost:3002/media-uploads`;
 
-  const fetchData = async () => {
-    try {
-      if (typeof window !== 'undefined') {
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    setToken(storedToken);
+
+    const fetchData = async () => {
+      try {
         const response = await axios.get(backendURL, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${storedToken}`,
           },
         });
         setData(response.data.mediaUploads);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+    };
 
-  useEffect(() => {
-    fetchData();
-  }, [data]);
+    fetchData(); // Call fetchData inside the useEffect
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array to run only once
 
   return (
     <>
-      <TableData data={data} fetchData={fetchData} backendURL={backendURL} />
+      <TableData data={data} backendURL={backendURL} />
     </>
   );
 };

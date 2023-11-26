@@ -2,14 +2,20 @@
 
 import { validateForm } from '@/utils/formValidations';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MediaUploadForm = ({ onClose }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [token, setToken] = useState('');
   const backendURL = `http://localhost:3002/media-uploads/add`;
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    setToken(storedToken);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,28 +26,26 @@ const MediaUploadForm = ({ onClose }) => {
     };
     if (validateForm(data)) {
       try {
-        if (typeof window !== 'undefined') {
-          const response = await axios.post(backendURL, data, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
+        const response = await axios.post(backendURL, data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const dataReceived = response.data;
+        console.log(dataReceived);
+        console.log(response.status);
+        if (response.status === 201) {
+          toast.success('Media Uploaded successful!', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
           });
-          const dataReceived = response.data;
-          console.log(dataReceived);
-          console.log(response.status);
-          if (response.status === 201) {
-            toast.success('Media Uploaded successful!', {
-              position: 'top-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'light',
-            });
-            onClose();
-          }
+          onClose();
         }
       } catch (error) {
         console.log(error);

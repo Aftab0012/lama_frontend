@@ -19,15 +19,13 @@ const CardFeed = () => {
   useEffect(() => {
     const getProjects = async () => {
       try {
-        if (typeof window !== 'undefined') {
-          const response = await axios.get(backendURL, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-          });
-          setData(response.data);
-          console.log(response.data);
-        }
+        const response = await axios.get(backendURL, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        setData(response.data);
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }

@@ -2,15 +2,21 @@
 
 import { validateForm } from '@/utils/formValidations';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 
 const ProjectCreationForm = () => {
   const [name, setName] = useState('');
+  const [token, setToken] = useState('');
   const router = useRouter();
   const backendURL = `http://localhost:3002/projects/add`;
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    setToken(storedToken);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,29 +25,27 @@ const ProjectCreationForm = () => {
     };
     if (validateForm(data)) {
       try {
-        if (typeof window !== 'undefined') {
-          const response = await axios.post(backendURL, data, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
+        const response = await axios.post(backendURL, data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const dataReceived = response.data;
+        console.log(dataReceived);
+        persistLogin(dataReceived);
+        console.log(response.status);
+        if (response.status === 201) {
+          toast.success('Media Uploaded successful!', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
           });
-          const dataReceived = response.data;
-          console.log(dataReceived);
-          persistLogin(dataReceived);
-          console.log(response.status);
-          if (response.status === 201) {
-            toast.success('Media Uploaded successful!', {
-              position: 'top-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'light',
-            });
-            router.push('/');
-          }
+          router.push('/');
         }
       } catch (error) {
         console.log(error);
@@ -62,10 +66,9 @@ const ProjectCreationForm = () => {
   };
 
   const persistLogin = (dataReceived) => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('projectId', dataReceived._id);
-    }
+    localStorage.setItem('projectId', dataReceived._id);
   };
+
   return (
     <div className="fixed w-full max-w-sm p-6 transform -translate-x-1/2 -translate-y-1/2 bg-white h-[300px] rounded-md shadow-md top-1/2 left-1/2 dark:bg-gray-800">
       <div className="h1-bold text-dark400_light800">Create Project</div>

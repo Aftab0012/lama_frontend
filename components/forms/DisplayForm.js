@@ -1,7 +1,7 @@
 import { backendURL } from '@/utils/backendURl';
 import { validateDisplayFormInput } from '@/utils/formValidations';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 const DisplayForm = () => {
@@ -19,6 +19,8 @@ const DisplayForm = () => {
 
   const [bottonDistance, setBottomDistance] = useState();
   const [horizontalDistance, setHorizontalDistance] = useState();
+
+  const [token, setToken] = useState('');
 
   const handleColorChange1 = (e) => {
     const enteredColor = e.target.value.trim();
@@ -44,6 +46,11 @@ const DisplayForm = () => {
     setChatSize(e.target.value);
   };
 
+  useEffect(() => {
+    const userToken = localStorage.getItem('token');
+    setToken(userToken);
+  }, []);
+
   const handleSubmit = async () => {
     const formData = {
       primarycolor: primaryColor,
@@ -57,30 +64,28 @@ const DisplayForm = () => {
     };
 
     try {
-      if (typeof window !== 'undefined') {
-        if (validateDisplayFormInput(formData)) {
-          const response = await axios.post(
-            `${backendURL}/display-form/add`,
-            formData,
-            {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-              },
-            }
-          );
-          console.log(response.data);
-          if (response.status === 201) {
-            toast.success('Form Submitted successfully!', {
-              position: 'top-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'light',
-            });
+      if (validateDisplayFormInput(formData)) {
+        const response = await axios.post(
+          `${backendURL}/display-form/add`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
+        );
+        console.log(response.data);
+        if (response.status === 201) {
+          toast.success('Form Submitted successfully!', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
+          });
         }
       }
     } catch (error) {

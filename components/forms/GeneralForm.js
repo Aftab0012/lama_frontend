@@ -3,7 +3,7 @@
 import { validateUserGeneralForm } from '@/utils/formValidations';
 import { updateGeneralFormId } from '@/utils/updateGeneralFormAxiosReq';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 const GeneralForm = (props) => {
@@ -14,8 +14,19 @@ const GeneralForm = (props) => {
   });
   const backendURL = `http://localhost:3002/generalform/add`;
 
-  const projectId = localStorage.getItem('projectId');
-  const generalFormId = localStorage.getItem('generalFormId');
+  const [projectId, setProjectId] = useState('');
+  const [generalFormId, setGeneralFormId] = useState('');
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    const storedProjectId = localStorage.getItem('projectId');
+    const storedGeneralFormId = localStorage.getItem('generalFormId');
+    const storedToken = localStorage.getItem('token');
+
+    setProjectId(storedProjectId);
+    setGeneralFormId(storedGeneralFormId);
+    setToken(storedToken);
+  }, []);
 
   const handleInputChange = (e, field) => {
     setData((prevData) => ({
@@ -36,7 +47,7 @@ const GeneralForm = (props) => {
       if (validateUserGeneralForm(formData)) {
         const response = await axios.post(backendURL, formData, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${token}`,
           },
         });
         const dataReceived = response.data;

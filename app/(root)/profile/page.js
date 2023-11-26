@@ -4,14 +4,19 @@ import { backendURL } from '@/utils/backendURl';
 import { validateUserUpdateName } from '@/utils/formValidations';
 import axios from 'axios';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import '../../../styles/customStyles.css';
 
 const page = () => {
   const [name, setName] = useState('');
-  console.log(name);
-  const username = localStorage.getItem('username');
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    // Retrieve username from localStorage when the page mounts
+    const storedUsername = localStorage.getItem('username');
+    setUsername(storedUsername || ''); // Use an empty string if username is not found
+  }, []);
 
   const updateName = async () => {
     let userId = localStorage.getItem('id');
