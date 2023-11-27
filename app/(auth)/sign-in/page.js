@@ -32,7 +32,7 @@ function Register() {
     e.preventDefault();
     try {
       const data = {
-        username: username,
+        username: username.toLowerCase().trim(),
         password: password,
       };
       if (validateInput(data)) {
